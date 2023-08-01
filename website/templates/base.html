@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Wide Flange Steel Members Calculator</title>
+    <link href="static/design.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <h1>Wide Flange Steel Members Calculator</h1>
+
+    <form class="member_input" action="/" method="POST">
+      <div class="members">
+        <label for="input">Selected Column: </label>
+        <select id="member" name="member">
+          {% for member in member_list %}
+          <option value="{{member}}">{{member}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </form>
+
+    <fieldset class="user_input">
+      <label class="user_input" for="Fy">F<sub>y</sub> : </label>
+      <input class="user_input" type="text" name="Fy" />
+
+      <label class="user_input" for="E">E : </label>
+      <input class="user_input" type="text" name="E" />
+      <br class="E" />
+
+      <label class="user_input" for="Lcx">L<sub>cx</sub> : </label>
+      <input class="user_input" type="text" name="Lcx" />
+
+      <label class="user_input" for="Lcy">L<sub>cy</sub> : </label>
+      <input class="user_input" type="text" name="Lcy" />
+    </fieldset>
+
+    <div class="section">
+      <h2>Section Properties</h2>
+      <hr />
+      <fieldset class="section">
+        <form class="A">
+          <label class="A" for="A">A : </label>
+          <input class="A" type="text" name="A" readonly />
+          <label class="unit" type="text">in<sup>2</sup></label>
+        </form>
+        <form class="rxry">
+          <label class="rxry" for="rx">r<sub>x</sub> : </label>
+          <input class="rxry" type="text" name="rx" readonly />
+          <label class="unit" type="text">in</label>
+
+          <label class="rxry" for="ry">r<sub>y</sub> : </label>
+          <input class="rxry" type="text" name="ry" readonly />
+          <label class="unit" type="text">in</label>
+        </form>
+        <form class="bfh">
+          <label class="bfh" for="bf2tf">b<sub>f</sub>/2t<sub>f</sub> : </label>
+          <input class="bfh" type="text" name="bf2tf" readonly />
+
+          <label class="bfh" for="htw">h/t<sub>w</sub> : </label>
+          <input class="bfh" type="text" name="htw" readonly />
+        </form>
+      </fieldset>
+    </div>
+
+    <div class="flange">
+      <h2>Flange and Web Slenderness</h2>
+      <hr />
+      <fieldset class="flange">
+        <label class="form_flange">Flange</label>
+        <form class="flange">
+          <br />
+          <label class="flange" for="bf2tf"
+            >b<sub>f</sub>/2t<sub>f</sub> :
+          </label>
+          <input class="flange" type="text" name="bf2tf" readonly />
+          <label class="flange" for="lambdar">&lambda;<sub>r</sub> : </label>
+          <input class="flange" type="text" name="lambdar" readonly />
+          <input
+            class="flange_slenderness"
+            type="text"
+            name="flange_slenderness"
+            readonly
+          />
+        </form>
+        <label class="form_web">Web</label>
+        <form class="web">
+          <br />
+          <label class="web" for="htw">h/t<sub>w</sub> : </label>
+          <input class="web" type="text" name="htw" readonly />
+          <label class="web" for="lambdar">&lambda;<sub>r</sub> : </label>
+          <input class="web" type="text" name="lambdar" readonly />
+          <input
+            class="web_slenderness"
+            type="text"
+            name="web_slenderness"
+            readonly
+          />
+        </form>
+      </fieldset>
+    </div>
+
+    <div class="axial">
+      <h2>Axial Strength (Flexural Buckling)</h2>
+      <hr />
+      <fieldset class="axial">
+        <form class="L">
+          <label class="L" for="lcxrx">L<sub>cx</sub>/r<sub>x</sub> : </label>
+          <input class="L" type="text" name="lcxrx" readonly />
+          <label class="L" for="lcyry">L<sub>cy</sub>/r<sub>y</sub> : </label>
+          <input class="L" type="text" name="lcyry" readonly />
+          <label class="L" for="lcr">L<sub>c</sub>/r : </label>
+          <input class="L" type="text" name="lcr" readonly />
+          <input
+            class="axis_control"
+            type="text"
+            name="axis_control"
+            readonly
+          />
+        </form>
+        <form class="F">
+          <label class="F" for="Fe">F<sub>e</sub> : </label>
+          <input class="F" type="text" name="Fe" readonly />
+          <label class="unit">ksi</label>
+          <label class="F" for="Fcr1">F<sub>cr</sub> : </label>
+          <input class="F" type="text" name="Fcr1" readonly />
+          <label class="unit">ksi</label>
+          <label class="F" for="Fcr2">F<sub>cr</sub> : </label>
+          <input class="F" type="text" name="Fcr2" readonly />
+          <label class="unit">ksi</label>
+        </form>
+        <form class="buckling">
+          <input
+            class="buckling_elasticity"
+            type="text"
+            name="buckling_elasticity"
+            readonly
+          />
+          <label class="buckling" for="Fcr">F<sub>cr</sub> : </label>
+          <input class="buckling" type="text" name="Fcr" readonly />
+          <label class="unit">ksi</label>
+          <label class="buckling" for="Pn">P<sub>n</sub> : </label>
+          <input class="buckling" type="text" name="Pn" readonly />
+          <label class="unit">kips</label>
+          <label class="buckling" for="phiPn">&phi;P<sub>n</sub> : </label>
+          <input class="buckling" type="text" name="phiPn" readonly />
+          <label class="unit">kips</label>
+        </form>
+      </fieldset>
+    </div>
+  </body>
+</html>
