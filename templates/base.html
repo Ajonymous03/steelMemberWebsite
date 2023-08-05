@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Wide Flange Steel Members Calculator</title>
+    <link href="static/design.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <h1>Wide Flange Steel Members Calculator</h1>
+
+    <form action="/" method="POST" id="website">
+      <div class="members">
+        <label for="member_dropdown">Selected Member: </label>
+        <select id="member_dropdown" name="member_dropdown">
+          {% for member in member_list %}
+          <option id="{{member}}" value="{{member}}">{{member}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <script>
+        document.getElementById("member_dropdown").onchange = function () {
+          localStorage.setItem(
+            "selectedItem",
+            document.getElementById("member_dropdown").value
+          );
+          this.form.submit();
+        };
+
+        if (localStorage.getItem("selectedItem")) {
+          document.getElementById("member_dropdown").options[
+            localStorage.getItem("selectedItem")
+          ].selected = true;
+        }
+      </script>
+
+      <fieldset class="user_input">
+        <label class="member">{{member}}</label> <br />
+        <label class="user_input" for="Fy">F<sub>y</sub> : </label>
+        <input
+          class="user_input"
+          type="text"
+          id="Fy"
+          value="{{'%g'%(Fy)}}"
+          name="Fy"
+        />
+        <label class="unit"> ksi</label>
+
+        <label class="user_input" for="E">E : </label>
+        <input
+          class="user_input"
+          type="text"
+          id="E"
+          value="{{'%g'%(E)}}"
+          name="E"
+        />
+        <label class="unit"> ksi</label>
+        <br class="E" />
+
+        <label class="user_input" for="Lcx">L<sub>cx</sub> : </label>
+        <input
+          class="user_input"
+          type="text"
+          id="Lcx"
+          value="{{'%g'%(Lcx)}}"
+          name="Lcx"
+        />
+        <label class="input_unit"> in</label>
+
+        <label class="user_input" for="Lcy">L<sub>cy</sub> : </label>
+        <input
+          class="user_input"
+          type="text"
+          id="Lcy"
+          value="{{'%g'%(Lcy)}}"
+          name="Lcy"
+        />
+        <label class="input_unit"> in</label>
+      </fieldset>
+
+      <div class="section">
+        <h2>Section Properties</h2>
+        <hr />
+        <fieldset class="section">
+          <div class="A">
+            <label class="A" for="A">A : </label>
+            <input
+              class="A"
+              type="text"
+              name="A"
+              value="{{'%.1f'%(A)}}"
+              readonly
+            />
+            <label class="unit" type="text">in<sup>2</sup></label>
+          </div>
+          <div class="rxry">
+            <label class="rxry" for="rx">r<sub>x</sub> : </label>
+            <input
+              class="rxry"
+              type="text"
+              name="rx"
+              value="{{'%.1f'%(rx)}}"
+              readonly
+            />
+            <label class="unit" type="text">in</label>
+
+            <label class="rxry" for="ry">r<sub>y</sub> : </label>
+            <input
+              class="rxry"
+              type="text"
+              name="ry"
+              value="{{'%.1f'%(ry)}}"
+              readonly
+            />
+            <label class="unit" type="text">in</label>
+          </div>
+          <div class="bfh">
+            <label class="bfh" for="bf2tf"
+              >b<sub>f</sub>/2t<sub>f</sub> :
+            </label>
+            <input
+              class="bfh"
+              type="text"
+              name="bf2tf"
+              value="{{'%.1f'%(bf2tf)}}"
+              readonly
+            />
+
+            <label class="bfh" for="htw">h/t<sub>w</sub> : </label>
+            <input
+              class="bfh"
+              type="text"
+              name="htw"
+              value="{{'%.1f'%(htw)}}"
+              readonly
+            />
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="flange_web">
+        <h2>Flange and Web Slenderness</h2>
+        <hr />
+        <fieldset class="flange">
+          <label class="div_flange">Flange</label>
+          <div class="flange">
+            <br />
+            <label class="flange" for="bf2tf"
+              >b<sub>f</sub>/2t<sub>f</sub> :
+            </label>
+            <input
+              class="flange"
+              type="text"
+              name="bf2tf"
+              value="{{'%.1f'%(bf2tf)}}"
+              readonly
+            />
+            <label class="flange" for="lambdar_flange"
+              >&lambda;<sub>r</sub> :
+            </label>
+            <input
+              class="flange"
+              type="text"
+              name="lambdar_flange"
+              value="{{'%.1f'%(lambdar_flange)}}"
+              readonly
+            />
+            <input
+              class="flange_slenderness"
+              type="text"
+              name="flange_slenderness"
+              value="{{flange_slenderness}}"
+              readonly
+            />
+          </div>
+          <label class="div_web">Web</label>
+          <div class="web">
+            <br />
+            <label class="web" for="htw">h/t<sub>w</sub> : </label>
+            <input
+              class="web"
+              type="text"
+              name="htw"
+              value="{{'%.1f'%(htw)}}"
+              readonly
+            />
+            <label class="web" for="lambdar_web">&lambda;<sub>r</sub> : </label>
+            <input
+              class="web"
+              type="text"
+              name="lambdar_web"
+              value="{{'%.1f'%(lambdar_web)}}"
+              readonly
+            />
+            <input
+              class="web_slenderness"
+              type="text"
+              name="web_slenderness"
+              value="{{web_slenderness}}"
+              readonly
+            />
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="axial">
+        <h2>Axial Strength (Flexural Buckling)</h2>
+        <hr />
+        <fieldset class="axial">
+          <div class="L">
+            <label class="L" for="Lcxrx">L<sub>cx</sub>/r<sub>x</sub> : </label>
+            <input
+              class="L"
+              type="text"
+              name="Lcxrx"
+              value="{{'%.1f'%(Lcxrx)}}"
+              readonly
+            />
+            <label class="L" for="Lcyry">L<sub>cy</sub>/r<sub>y</sub> : </label>
+            <input
+              class="L"
+              type="text"
+              name="Lcyry"
+              value="{{'%.1f'%(Lcyry)}}"
+              readonly
+            />
+            <label class="L" for="lcr">L<sub>c</sub>/r : </label>
+            <input
+              class="L"
+              type="text"
+              name="lcr"
+              value="{{'%.1f'%(Lcr)}}"
+              readonly
+            />
+            <input
+              class="axis_control"
+              type="text"
+              name="axis_control"
+              value="{{controlling_axis}}"
+              readonly
+            />
+          </div>
+          <div class="F">
+            <label class="F" for="Fe">F<sub>e</sub> : </label>
+            <input
+              class="F"
+              type="text"
+              name="Fe"
+              value="{{'%.1f'%(Fe)}}"
+              readonly
+            />
+            <label class="unit">ksi</label>
+            <label class="F" for="Fcr1">F<sub>cr</sub> : </label>
+            <input
+              class="F"
+              type="text"
+              name="Fcr1"
+              value="{{'%.1f'%(Fcr1)}}"
+              readonly
+            />
+            <label class="unit">ksi</label>
+            <label class="F" for="Fcr2">F<sub>cr</sub> : </label>
+            <input
+              class="F"
+              type="text"
+              name="Fcr2"
+              value="{{'%.1f'%(Fcr2)}}"
+              readonly
+            />
+            <label class="unit">ksi</label>
+          </div>
+          <div class="buckling" action="/" method="POST">
+            <input
+              class="buckling_elasticity"
+              type="text"
+              name="buckling_elasticity"
+              value="{{buckling_method}}"
+              readonly
+            />
+            <label class="buckling" for="Fcr">F<sub>cr</sub> : </label>
+            <input
+              class="buckling"
+              type="text"
+              name="Fcr"
+              value="{{'%.1f'%(Fcr3)}}"
+              readonly
+            />
+            <label class="unit">ksi</label>
+            <label class="buckling" for="Pn">P<sub>n</sub> : </label>
+            <input
+              class="buckling"
+              type="text"
+              name="Pn"
+              value="{{'%.1f'%(Pn)}}"
+              readonly
+            />
+            <label class="unit">kips</label>
+            <label class="buckling" for="phiPn">&phi;P<sub>n</sub> : </label>
+            <input
+              class="buckling"
+              type="text"
+              name="phiPn"
+              value="{{'%.1f'%(phiPn)}}"
+              readonly
+            />
+            <label class="unit">kips</label>
+          </div>
+        </fieldset>
+      </div>
+    </form>
+  </body>
+</html>
