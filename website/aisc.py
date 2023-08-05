@@ -286,3 +286,10 @@ wide_flange_database = {
     'W5X16': {'W': 16,'A': 4.71,'d': 5.01,'ddet': 5,'bf': 5,'bfdet': 5,'tw': 0.24,'twdet': 0.25,'twdet/2': 0.125,'tf': 0.36,'tfdet': 0.375,'kdes': 0.66,'kdet': 0.75,'k1': 0.4375,'bf/2tf': 6.94,'h/tw': 15.4,'Ix': 21.4,'Zx': 9.63,'Sx': 8.55,'rx': 2.13,'Iy': 7.51,'Zy': 4.58,'Sy': 3,'ry': 1.26,'J': 0.192,'Cw': 40.6,'Wno': 5.81,'Sw1': 2.62,'Qf': 1.99,'Qw': 4.74,'rts': 1.43,'ho': 4.65,'PA': 24,'PB': 29,'PC': 15,'PD': 20,'T': 3.5,'WGi': 2.75,'metric_label': 'W130X23.8'},
     'W4X13': {'W': 13,'A': 3.83,'d': 4.16,'ddet': 4.125,'bf': 4.06,'bfdet': 4,'tw': 0.28,'twdet': 0.25,'twdet/2': 0.125,'tf': 0.345,'tfdet': 0.375,'kdes': 0.595,'kdet': 0.75,'k1': 0.5,'bf/2tf': 5.88,'h/tw': 10.6,'Ix': 11.3,'Zx': 6.28,'Sx': 5.46,'rx': 1.72,'Iy': 3.86,'Zy': 2.92,'Sy': 1.9,'ry': 1,'J': 0.151,'Cw': 14,'Wno': 3.87,'Sw1': 1.36,'Qf': 1.24,'Qw': 3.09,'rts': 1.16,'ho': 3.82,'PA': 19.5,'PB': 23.6,'PC': 12.4,'PD': 16.4,'T': 2.625,'WGi': 2.25,'metric_label': 'W100X19.3'},
 }
+
+def names(): 
+    member_list = []
+
+    for member in wide_flange_database:
+        member_list.append(member)
+    return member_list
