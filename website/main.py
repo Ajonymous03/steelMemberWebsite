@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 from aisc import wide_flange_database, names
 from math import sqrt, pi
 
@@ -50,19 +50,20 @@ def calculations():
     if member != None and request.method == 'POST':
         # Gets Section Properties Data
         A = wide_flange_database[member]['A']
-        print(A)
         rx = wide_flange_database[member]['rx']
         ry = wide_flange_database[member]['ry']
         bf2tf = wide_flange_database[member]['bf/2tf']
         htw = wide_flange_database[member]['h/tw']
 
         # Gets Flange and Web Slenderness Data
-        lambdar_flange = 0.56 * sqrt(E / Fy)
+        if float(request.form.get('Fy')) > 0:
+            lambdar_flange = 0.56 * sqrt(E / Fy)
         if bf2tf < lambdar_flange:
             flange_slenderness = 'Nonslender'
         else:
             flange_slenderness = 'Slender'
-        lambdar_web = 1.49 * sqrt(E / Fy)
+        if float(request.form.get('Fy')) > 0:
+            lambdar_web = 1.49 * sqrt(E / Fy)
         if htw < lambdar_web:
             web_slenderness = 'Nonslender'
         else:
@@ -76,15 +77,18 @@ def calculations():
             controlling_axis = 'Minor Axis Controls'
         else:
             controlling_axis = 'Major Axis Controls'
-        Fe = pi**2 * E / Lcr**2
-        Fcr1 = 0.658**(Fy/Fe)*Fy
+        if float(request.form.get('Lcx')) > 0 and float(request.form.get('Lcy')) > 0: 
+            Fe = pi**2 * E / Lcr**2
+        if float(request.form.get('Lcx')) > 0 and float(request.form.get('Lcy')) > 0:
+            Fcr1 = 0.658**(Fy/Fe)*Fy
         Fcr2 = 0.877 * Fe
-        if Lcr <= 4.71 * sqrt(E / Fy):
-            buckling_method = 'Inelastic Buckling'
-            Fcr3 = Fcr1
-        else:
-            buckling_method = 'Elastic Buckling'
-            Fcr3 = Fcr2
+        if float(request.form.get('Fy')) > 0:
+            if Lcr <= 4.71 * sqrt(E / Fy):
+                buckling_method = 'Inelastic Buckling'
+                Fcr3 = Fcr1
+            else:
+                buckling_method = 'Elastic Buckling'
+                Fcr3 = Fcr2
         Pn = Fcr3 * A
         phiPn = 0.9 * Pn
 
