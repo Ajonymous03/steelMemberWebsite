@@ -8,6 +8,8 @@ body {
 
 h1 {
   position: absolute;
+  width: 100%;
+  text-align: center;
 }
 
 h2 {
