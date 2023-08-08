@@ -100,4 +100,4 @@ def calculations():
                            Lcxrx = Lcxrx, Lcyry = Lcyry, Lcr = Lcr, controlling_axis = controlling_axis, Fe = Fe, Fcr1 = Fcr1, Fcr2 = Fcr2, buckling_method = buckling_method, Fcr3 = Fcr3, Pn = Pn, phiPn = phiPn)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80, debug = True)
+    app.run(debug=True)
