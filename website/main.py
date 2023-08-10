@@ -93,8 +93,7 @@ def calculations():
         phiPn = 0.9 * Pn
 
 
-    return render_template('base.html', member_list = names(), member = member,
-                           Fy = Fy, E = E, Lcx = Lcx, Lcy = Lcy,
+    return render_template('responsive_base.html', member_list = names(), member = member, Fy = Fy, E = E, Lcx = Lcx, Lcy = Lcy, 
                            A = A, rx = rx, ry = ry, bf2tf = bf2tf, htw = htw, 
                            lambdar_flange = lambdar_flange, flange_slenderness = flange_slenderness, lambdar_web = lambdar_web, web_slenderness = web_slenderness, 
                            Lcxrx = Lcxrx, Lcyry = Lcyry, Lcr = Lcr, controlling_axis = controlling_axis, Fe = Fe, Fcr1 = Fcr1, Fcr2 = Fcr2, buckling_method = buckling_method, Fcr3 = Fcr3, Pn = Pn, phiPn = phiPn)
