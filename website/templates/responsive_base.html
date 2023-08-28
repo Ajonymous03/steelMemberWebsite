@@ -17,9 +17,15 @@
   <body>
     <form action="/" method="POST">
       <div class="row">
-        <div class="col-1">
-          <label class="space" for="member_dropdown">Selected Member: </label>
-          <select id="member_dropdown" name="member_dropdown">
+        <div class="col-2">
+          <label class="member_select_label" for="member_dropdown"
+            >Selected Member:
+          </label>
+          <select
+            class="member_dropdown"
+            id="member_dropdown"
+            name="member_dropdown"
+          >
             {% for member in member_list %}
             <option id="{{member}}" value="{{member}}">{{member}}</option>
             {% endfor %}
@@ -42,10 +48,13 @@
           }
         </script>
 
-        <div class="header1 col-5">
+        <div class="header1 col-4">
           <h1>Wide Flange Steel Members Calculator</h1>
+          <h4>
+            Input Values to Right First, Select Member at Left to Calculate
+          </h4>
         </div>
-        <div class="col-1">
+        <div class="col-2">
           <label class="member member_space">{{member}}</label> <br />
           <label class="user_input-label" for="Fy">F<sub>y</sub> : </label>
           <input
@@ -90,14 +99,46 @@
       </div>
 
       <div class="row">
-        <div class="header2 col-7 space">
-          <h2>Section Properties</h2>
+        <div class="header2 col-5 space">
+          <div class="header-with-button">
+            <h2 class="section-header">Section Properties</h2>
+            <button
+              id="show-section"
+              class="show-section"
+              type="button"
+              onclick="openSectionCalculations()"
+            >
+              Show Calculations
+            </button>
+            <div class="content">
+              <p>
+                Working on the expanding text boxes, looking for a way to move
+                this down so it expands below the horizontal line
+              </p>
+            </div>
+            <script>
+              var coll = document.getElementsByClassName("show-section");
+              var i;
+
+              for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function () {
+                  this.classList.toggle("active");
+                  var content = this.nextElementSibling;
+                  if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                  } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                  }
+                });
+              }
+            </script>
+          </div>
           <hr />
         </div>
       </div>
       <div class="row">
         <div class="col-1"></div>
-        <div class="col-1">
+        <div class="col-2">
           <label class="A-label" for="A">A : </label>
           <input
             class="A"
@@ -109,7 +150,7 @@
           <label class="unit" type="text">in<sup>2</sup></label>
         </div>
         <div class="col-1"></div>
-        <div class="col-1">
+        <div class="col-2">
           <label class="rxry-label" for="rx">r<sub>x</sub> : </label>
           <input
             class="rxry"
@@ -131,7 +172,7 @@
           <label class="unit" type="text">in</label>
         </div>
         <div class="col-1"></div>
-        <div class="col-1">
+        <div class="col-2">
           <label class="bfh-label" for="bf2tf"
             >b<sub>f</sub>/2t<sub>f</sub> :
           </label>
@@ -156,14 +197,19 @@
         <div class="col-1"></div>
       </div>
       <div class="row">
-        <div class="header2 col-7 space">
-          <h2>Flange and Web Slenderness</h2>
+        <div class="header2 col-5 space">
+          <div class="header-with-button">
+            <h2 class="section-header">Flange and Web Slenderness</h2>
+            <button id="show-flange-web" class="show-flange-web">
+              Show Calculations
+            </button>
+          </div>
           <hr />
         </div>
       </div>
       <div class="row">
         <div class="col-2"></div>
-        <div class="col-1">
+        <div class="col-2">
           <label class="space div_flange">Flange</label> <br />
           <label class="flange-label" for="bf2tf"
             >b<sub>f</sub>/2t<sub>f</sub> :
@@ -194,8 +240,8 @@
             readonly
           />
         </div>
-        <div class="col-1"></div>
-        <div class="col-1">
+        <div class="col-2"></div>
+        <div class="col-2">
           <label class="space div_web">Web</label>
           <br />
           <label class="web-label" for="htw">h/t<sub>w</sub> : </label>
@@ -230,14 +276,19 @@
         <div class="col-2"></div>
       </div>
       <div class="row">
-        <div class="header2 col-7 space">
-          <h2>Axial Strength (Flexural Buckling)</h2>
+        <div class="header2 col-5 space">
+          <div class="header-with-button">
+            <h2 class="section-header">Axial Strength (Flexural Buckling)</h2>
+            <button id="show-axial" class="show-axial">
+              Show Calculations
+            </button>
+          </div>
           <hr />
         </div>
       </div>
       <div class="row">
         <div class="col-1"></div>
-        <div class="col-1">
+        <div class="col-2">
           <label class="L-label" for="Lcxrx"
             >L<sub>cx</sub>/r<sub>x</sub> :
           </label>
@@ -248,7 +299,7 @@
             value="{{'%.1f'%(Lcxrx)}}"
             readonly
           />
-          <br />
+
           <label class="L-label" for="Lcyry"
             >L<sub>cy</sub>/r<sub>y</sub> :
           </label>
@@ -259,7 +310,7 @@
             value="{{'%.1f'%(Lcyry)}}"
             readonly
           />
-          <br />
+
           <label class="L-label" for="lcr">L<sub>c</sub>/r : </label>
           <input
             class="L"
@@ -268,7 +319,7 @@
             value="{{'%.1f'%(Lcr)}}"
             readonly
           />
-          <br />
+
           <label class="L-label blank" for="axis_control">1</label>
           <input
             class="axis_control"
@@ -279,7 +330,7 @@
           />
         </div>
         <div class="col-1"></div>
-        <div class="col-1">
+        <div class="col-2">
           <label class="F-label" for="Fe">F<sub>e</sub> : </label>
           <input
             class="F"
@@ -309,7 +360,7 @@
           <label class="unit">ksi</label>
         </div>
         <div class="col-1"></div>
-        <div class="col-1">
+        <div class="col-2">
           <label class="buckling-label blank" for="buckling_elasticity"
             >1</label
           >

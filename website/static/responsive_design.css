@@ -9,13 +9,14 @@ html {
 }
 
 body {
-  background-color: #8a8888;
+  background-color: #58595b;
 }
 
 .header1 {
   color: black;
   padding: 15px;
   text-align: center;
+  margin: auto;
 }
 
 .header2 {
@@ -57,28 +58,38 @@ select {
   display: flex;
 }
 
+.header-with-button {
+  display: flex;
+  align-items: center;
+}
+
 /* Label Formatting */
 
 label:not(.div_flange, .div_web, .unit) {
   font-size: 15px;
 }
 
+.member_select_label {
+  padding-left: 20%;
+  justify-content: center;
+}
+
+.member_space {
+  padding-left: 43%;
+}
+
 .space {
   padding-left: 15px;
 }
 
-.member_space {
-  padding-left: 35%;
-}
-
 .div_flange {
   font-size: 20px;
-  padding-left: 48%;
+  padding-left: 43%;
 }
 
 .div_web {
   font-size: 20px;
-  padding-left: 52%;
+  padding-left: 45%;
 }
 
 .blank {
@@ -89,7 +100,7 @@ label:not(.div_flange, .div_web, .unit) {
   text-align: right;
   float: left;
   clear: left;
-  width: 10%;
+  width: 15%;
   padding-right: 2px;
 }
 
@@ -110,7 +121,7 @@ label:not(.div_flange, .div_web, .unit) {
   text-align: right;
   float: left;
   clear: left;
-  width: 25%;
+  width: 16%;
   padding-right: 2px;
 }
 
@@ -122,6 +133,10 @@ label:not(.div_flange, .div_web, .unit) {
   padding-right: 2px;
 }
 
+.section-header {
+  margin: 0;
+}
+
 /* Input Formatting */
 
 .flange_slenderness,
@@ -130,8 +145,8 @@ label:not(.div_flange, .div_web, .unit) {
 .buckling_elasticity {
   background-color: rgb(207, 207, 207);
   border: none;
-  width: 69.5%;
-  margin-left: 0.25%;
+  width: 69.75%;
+  margin-left: 0.1%;
   text-align: center;
   font-weight: bold;
 }
@@ -145,14 +160,57 @@ input:not(
   width: 70%;
 }
 
+/* Button Formatting */
+
+.show-section,
+.show-flange-web,
+.show-axial {
+  margin-left: auto;
+  border: none;
+  color: black;
+  background-color: white;
+  text-align: center;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Hidden Popup Formatting */
+
+.section-popup,
+.section-popup-text {
+  visibility: hidden;
+  width: 100%;
+  background-color: orange;
+  height: 0px;
+}
+
+.section-popup .show {
+  visibility: visible;
+  height: 50px;
+}
+
+.active,
+.show-section:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
 /* Specifying Column Width */
 
 .col-1 {
-  width: 14.28%;
+  width: 10%;
 }
 
 .col-2 {
-  width: 28.57%;
+  width: 20%;
 }
 
 .col-3 {
@@ -160,18 +218,10 @@ input:not(
 }
 
 .col-4 {
-  width: 57.14%;
+  width: 60%;
 }
 
 .col-5 {
-  width: 71.43%;
-}
-
-.col-6 {
-  width: 85.72%;
-}
-
-.col-7 {
   width: 100%;
 }
 
