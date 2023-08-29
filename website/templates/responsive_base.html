@@ -102,12 +102,7 @@
         <div class="header2 col-5 space">
           <div class="header-with-button">
             <h2 class="section-header">Section Properties</h2>
-            <button
-              id="show-section"
-              class="show-section"
-              type="button"
-              onclick="openSectionCalculations()"
-            >
+            <button id="show-section" class="show-section" type="button">
               Show Calculations
             </button>
             <div class="content">
@@ -116,22 +111,6 @@
                 this down so it expands below the horizontal line
               </p>
             </div>
-            <script>
-              var coll = document.getElementsByClassName("show-section");
-              var i;
-
-              for (i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function () {
-                  this.classList.toggle("active");
-                  var content = this.nextElementSibling;
-                  if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                  } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                  }
-                });
-              }
-            </script>
           </div>
           <hr />
         </div>
@@ -406,4 +385,20 @@
       </div>
     </form>
   </body>
+  <script>
+    var coll = document.getElementsByClassName("show-section");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    }
+  </script>
 </html>

@@ -121,7 +121,7 @@ label:not(.div_flange, .div_web, .unit) {
   text-align: right;
   float: left;
   clear: left;
-  width: 16%;
+  width: 18%;
   padding-right: 2px;
 }
 
@@ -173,6 +173,14 @@ input:not(
   font-size: 15px;
   cursor: pointer;
   padding: 5px;
+  width: 10%;
+  justify-content: center;
+}
+
+.row-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Hidden Popup Formatting */
