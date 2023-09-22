@@ -48,7 +48,7 @@
           }
         </script>
 
-        <div class="header1 col-4">
+        <div class="header1 col-9">
           <h1>Wide Flange Steel Members Calculator</h1>
           <h4>
             Input Values to Right First, Select Member at Left to Calculate
@@ -100,23 +100,11 @@
 
       <div class="row">
         <div class="header2 col-5 space">
-          <div class="header-with-button">
-            <h2 class="section-header">Section Properties</h2>
-            <button id="show-section" class="show-section" type="button">
-              Show Calculations
-            </button>
-            <div class="content">
-              <p>
-                Working on the expanding text boxes, looking for a way to move
-                this down so it expands below the horizontal line
-              </p>
-            </div>
-          </div>
-          <hr />
+          <h2 class="section-header">Section Properties</h2>
         </div>
       </div>
       <div class="row">
-        <div class="col-1"></div>
+        <div class="col-8"></div>
         <div class="col-2">
           <label class="A-label" for="A">A : </label>
           <input
@@ -128,7 +116,7 @@
           />
           <label class="unit" type="text">in<sup>2</sup></label>
         </div>
-        <div class="col-1"></div>
+        <div class="col-8"></div>
         <div class="col-2">
           <label class="rxry-label" for="rx">r<sub>x</sub> : </label>
           <input
@@ -150,7 +138,7 @@
           />
           <label class="unit" type="text">in</label>
         </div>
-        <div class="col-1"></div>
+        <div class="col-8"></div>
         <div class="col-2">
           <label class="bfh-label" for="bf2tf"
             >b<sub>f</sub>/2t<sub>f</sub> :
@@ -162,6 +150,8 @@
             value="{{'%.1f'%(bf2tf)}}"
             readonly
           />
+          <label class="unit" type="text">in</label>
+
           <br />
 
           <label class="bfh-label" for="htw">h/t<sub>w</sub> : </label>
@@ -172,22 +162,46 @@
             value="{{'%.1f'%(htw)}}"
             readonly
           />
+          <label class="unit" type="text">in</label>
         </div>
-        <div class="col-1"></div>
+        <div class="col-8"></div>
       </div>
       <div class="row">
-        <div class="header2 col-5 space">
-          <div class="header-with-button">
-            <h2 class="section-header">Flange and Web Slenderness</h2>
-            <button id="show-flange-web" class="show-flange-web">
-              Show Calculations
-            </button>
-          </div>
+        <div class="col-5">
           <hr />
         </div>
       </div>
       <div class="row">
-        <div class="col-2"></div>
+        <div class="header2 col-6 space">
+          <h2 class="section-header">Flange and Web Slenderness</h2>
+        </div>
+        <div class="col-2">
+          <button class="show-flange-web" id="show-flange-web" type="button">
+            Show Calculations
+          </button>
+        </div>
+      </div>
+      <div class="row flange-web-collapse" id="flange-web-collapse">
+        <div class="col-11 margin align">
+          <img src="https://latex.codecogs.com/png.image?\inline&space;\dpi{300}\lambda&space;_{r}=0.56\sqrt{\frac{E}{F_{y}}}" title="\lambda _{r}=0.56\sqrt{\frac{E}{F_{y}}}" />
+        </div>
+        <div class="col-11">
+        </div>
+      </div>
+      <script>
+        document
+          .getElementById("show-flange-web")
+          .addEventListener("click", () => {
+            text = document.getElementById("flange-web-collapse");
+            if (text.style.display === "flex") {
+              text.style.display = "none";
+            } else {
+              text.style.display = "flex";
+            }
+          });
+      </script>
+      <div class="row">
+        <div class="col-7"></div>
         <div class="col-2">
           <label class="space div_flange">Flange</label> <br />
           <label class="flange-label" for="bf2tf"
@@ -219,7 +233,7 @@
             readonly
           />
         </div>
-        <div class="col-2"></div>
+        <div class="col-7"></div>
         <div class="col-2">
           <label class="space div_web">Web</label>
           <br />
@@ -252,21 +266,46 @@
             readonly
           />
         </div>
-        <div class="col-2"></div>
+        <div class="col-7"></div>
       </div>
       <div class="row">
-        <div class="header2 col-5 space">
-          <div class="header-with-button">
-            <h2 class="section-header">Axial Strength (Flexural Buckling)</h2>
-            <button id="show-axial" class="show-axial">
-              Show Calculations
-            </button>
-          </div>
+        <div class="col-5">
           <hr />
         </div>
       </div>
       <div class="row">
-        <div class="col-1"></div>
+        <div class="header2 col-6 space">
+          <div class="header">
+            <h2 class="section-header">Axial Strength (Flexural Buckling)</h2>
+          </div>
+        </div>
+        <div class="col-2">
+          <button class="show-axial" id="show-axial" type="button">
+            Show Calculations
+          </button>
+        </div>
+      </div>
+      <div class="row axial-collapse" id="axial-collapse">
+        <p class="axial-collapse-text">
+          Some placeholder content for the collapse component. This panel is
+          hidden by default but revealed when the user activates the relevant
+          trigger.
+        </p>
+        <script>
+          document
+            .getElementById("show-axial")
+            .addEventListener("click", () => {
+              text = document.getElementById("axial-collapse");
+              if (text.style.display === "flex") {
+                text.style.display = "none";
+              } else {
+                text.style.display = "flex";
+              }
+            });
+        </script>
+      </div>
+      <div class="row">
+        <div class="col-8"></div>
         <div class="col-2">
           <label class="L-label" for="Lcxrx"
             >L<sub>cx</sub>/r<sub>x</sub> :
@@ -308,7 +347,7 @@
             readonly
           />
         </div>
-        <div class="col-1"></div>
+        <div class="col-8"></div>
         <div class="col-2">
           <label class="F-label" for="Fe">F<sub>e</sub> : </label>
           <input
@@ -338,7 +377,7 @@
           />
           <label class="unit">ksi</label>
         </div>
-        <div class="col-1"></div>
+        <div class="col-8"></div>
         <div class="col-2">
           <label class="buckling-label blank" for="buckling_elasticity"
             >1</label
@@ -381,24 +420,8 @@
           />
           <label class="unit">kips</label>
         </div>
-        <div class="col-1"></div>
+        <div class="col-8"></div>
       </div>
     </form>
   </body>
-  <script>
-    var coll = document.getElementsByClassName("show-section");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      });
-    }
-  </script>
 </html>
