@@ -17,7 +17,6 @@ body {
   padding: 15px;
   text-align: center;
   margin: auto;
-
 }
 
 .header2 {
@@ -65,33 +64,43 @@ select {
   margin-right: -15px;
 }
 
+.alignment {
+  margin: auto;
+}
+
 /* Label Formatting */
 
 label:not(.div_flange, .div_web, .unit) {
   font-size: 15px;
+  vertical-align: middle;
 }
 
 .member_select_label {
   padding-left: 20%;
   justify-content: center;
+  vertical-align: middle;
 }
 
 .member_space {
   padding-left: 43%;
+  vertical-align: middle;
 }
 
 .space {
   padding-left: 15px;
+  vertical-align: middle;
 }
 
 .div_flange {
   font-size: 20px;
   padding-left: 43%;
+  vertical-align: middle;
 }
 
 .div_web {
   font-size: 20px;
   padding-left: 45%;
+  vertical-align: middle;
 }
 
 .blank {
@@ -100,15 +109,20 @@ label:not(.div_flange, .div_web, .unit) {
 
 .bfh-label,
 .flange-label,
-.web-label, .user_input-label,
+.web-label,
+.user_input-label,
 .rxry-label,
-.F-label, .A-label, .buckling-label, .L-label {
+.F-label,
+.A-label,
+.buckling-label,
+.L-label {
   text-align: right;
   float: left;
   clear: left;
   width: 35%;
   padding-right: 2px;
   margin-left: -20%;
+  vertical-align: middle;
 }
 
 /* Input Formatting */
@@ -134,42 +148,44 @@ input:not(
   width: 70%;
 }
 
-/* Button Formatting */
-
-.row-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Hidden Popup Formatting */
 
-.show-section, .show-flange-web, .show-axial {
+.show-flange-web,
+.show-axial {
   cursor: pointer;
   width: 100%;
   text-align: center;
   font-size: 15px;
+  margin: auto;
 }
 
-.active, .show-section:hover, .show-flange-web:hover, .show-axial:hover {
+.active,
+.show-flange-web:hover,
+.show-axial:hover {
   background-color: #555;
 }
 
-.section-collapse, .flange-web-collapse, .axial-collapse {
-  display:none;
+.flange-web-collapse,
+.axial-collapse {
+  display: none;
   overflow: hidden;
 }
 
-.section-collapse-text, .flange-web-collapse-text, .axial-collapse-text {
+.flange-web-collapse-text,
+.axial-collapse-text {
   margin: 10px 15px;
 }
 
-.align {
-  justify-content: center;
+.padding {
+  padding: 10px 10px;
 }
 
-.margin {
-  padding: 10px 10px;
+.math {
+  font-size: 125%;
+}
+
+.border {
+  border-right: 4px solid black;
 }
 /* Specifying Column Width */
 
@@ -215,6 +231,10 @@ input:not(
 
 .col-11 {
   width: 50%;
+}
+
+.col-12 {
+  width: 33.333%;
 }
 
 /* Specifying Media Width */

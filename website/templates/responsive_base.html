@@ -12,13 +12,22 @@
       rel="stylesheet"
       type="text/css"
     />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
   </head>
 
   <body>
     <form action="/" method="POST">
       <div class="row">
-        <div class="col-2">
-          <label class="member_select_label" for="member_dropdown"
+        <div class="col-2 alignment">
+          <label
+            class="member_select_label"
+            for="member_dropdown"
+            style="vertical-align: middle"
             >Selected Member:
           </label>
           <select
@@ -111,7 +120,7 @@
             class="A"
             type="text"
             name="A"
-            value="{{'%.1f'%(A)}}"
+            value="{{'%.2f'%(A)}}"
             readonly
           />
           <label class="unit" type="text">in<sup>2</sup></label>
@@ -123,7 +132,7 @@
             class="rxry"
             type="text"
             name="rx"
-            value="{{'%.1f'%(rx)}}"
+            value="{{'%.2f'%(rx)}}"
             readonly
           />
           <label class="unit" type="text">in</label> <br />
@@ -133,7 +142,7 @@
             class="rxry"
             type="text"
             name="ry"
-            value="{{'%.1f'%(ry)}}"
+            value="{{'%.2f'%(ry)}}"
             readonly
           />
           <label class="unit" type="text">in</label>
@@ -147,7 +156,7 @@
             class="bfh"
             type="text"
             name="bf2tf"
-            value="{{'%.1f'%(bf2tf)}}"
+            value="{{'%.2f'%(bf2tf)}}"
             readonly
           />
           <label class="unit" type="text">in</label>
@@ -159,7 +168,7 @@
             class="bfh"
             type="text"
             name="htw"
-            value="{{'%.1f'%(htw)}}"
+            value="{{'%.2f'%(htw)}}"
             readonly
           />
           <label class="unit" type="text">in</label>
@@ -182,10 +191,25 @@
         </div>
       </div>
       <div class="row flange-web-collapse" id="flange-web-collapse">
-        <div class="col-11 margin align">
-          <img src="https://latex.codecogs.com/png.image?\inline&space;\dpi{300}\lambda&space;_{r}=0.56\sqrt{\frac{E}{F_{y}}}" title="\lambda _{r}=0.56\sqrt{\frac{E}{F_{y}}}" />
+        <div class="col-10 padding">
+          <p class="math">\[\lambda _{r} = 0.56\sqrt{\frac{E}{F_{y}}}\]</p>
         </div>
-        <div class="col-11">
+        <div class="col-10 padding border">
+          <p class="math">
+            \[\begin{cases} \text{Nonslender if}\; \frac{b_{f}}{2t_{f}} &lt;
+            \lambda_{r} \\ \text{Slender if}\; \frac{b_{f}}{2t_{f}} &gt;
+            \lambda_{r} \\ \end{cases}\]
+          </p>
+        </div>
+        <div class="col-10 padding">
+          <p class="math">\[\lambda _{r} = 1.49\sqrt{\frac{E}{F_{y}}}\]</p>
+        </div>
+        <div class="col-10 padding">
+          <p class="math">
+            \[\begin{cases} \text{Nonslender if}\; \frac{h}{t_{w}} &lt;
+            \lambda_{r} \\ \text{Slender if}\; \frac{h}{t_{w}} &gt; \lambda_{r}
+            \\ \end{cases}\]
+          </p>
         </div>
       </div>
       <script>
@@ -211,7 +235,7 @@
             class="flange"
             type="text"
             name="bf2tf"
-            value="{{'%.1f'%(bf2tf)}}"
+            value="{{'%.2f'%(bf2tf)}}"
             readonly
           /><br />
           <label class="flange-label" for="lambdar_flange"
@@ -221,7 +245,7 @@
             class="flange"
             type="text"
             name="lambdar_flange"
-            value="{{'%.1f'%(lambdar_flange)}}"
+            value="{{'%.2f'%(lambdar_flange)}}"
             readonly
           /><br />
           <label class="flange-label blank" for="flange_slenderness">1</label>
@@ -242,7 +266,7 @@
             class="web"
             type="text"
             name="htw"
-            value="{{'%.1f'%(htw)}}"
+            value="{{'%.2f'%(htw)}}"
             readonly
           />
           <br />
@@ -253,7 +277,7 @@
             class="web"
             type="text"
             name="lambdar_web"
-            value="{{'%.1f'%(lambdar_web)}}"
+            value="{{'%.2f'%(lambdar_web)}}"
             readonly
           />
           <br />
@@ -286,11 +310,39 @@
         </div>
       </div>
       <div class="row axial-collapse" id="axial-collapse">
-        <p class="axial-collapse-text">
-          Some placeholder content for the collapse component. This panel is
-          hidden by default but revealed when the user activates the relevant
-          trigger.
-        </p>
+        <div class="col-12 padding border">
+          <p class="math">
+            \[\frac{L_{c}}{r} = max(\frac{L_{cx}}{r_{x}},
+            \frac{L_{cy}}{r_{y}})\]
+          </p>
+          <p class="math">
+            \[\begin{cases} \text{Minor Axis Controls if }\;\frac{L_{cx}}{r_{x}}
+            &lt; \frac{L_{cy}}{r_{y}}\\ \text{Major Axis Controls if }\;
+            \frac{L_{cx}}{r_{x}} &gt; \frac{L_{cy}}{r_{y}}\\ \end{cases}\]
+          </p>
+        </div>
+        <div class="col-12 padding border">
+          <p class="math">\[F_{e} = \frac{\pi^2E}{(\frac{L_{c}}{r})^2}\]</p>
+          <p class="math">
+            \[\text{Eqn. E3-2:} \;\; F_{cr} = 0.658^{(\frac{F_{y}}{F_{e}})}
+            F_{y}\]
+          </p>
+          <p class="math">\[\text{Eqn. E3-3:} \;\; F_{cr} = 0.877F_{e}\]</p>
+        </div>
+        <div class="col-12 padding">
+          <p class="math">
+            \[\begin{cases} \text{Inelastic Buckling if }\; F_{cr}\leq
+            4.71\sqrt{\frac{E}{F_{y}}}\\ \text{Elastic Buckling if }\;
+            F_{cr}\geq 4.71\sqrt{\frac{E}{F_{y}}}\\ \end{cases}\]
+          </p>
+          <p class="math">
+            \[\begin{cases} F_{cr(E3-2)}\; \text{if}\; F_{cr(E3-2)} \leq
+            4.71\sqrt{\frac{E}{F_{y}}}\\ F_{cr(E3-3)}\; \text{if}\; F_{cr(E3-2)}
+            \geq 4.71\sqrt{\frac{E}{F_{y}}}\\ \end{cases}\]
+          </p>
+          <p class="math">\[P_{n} = F_{cr}A\]</p>
+          <p class="math">\[\phi P_{n} = 0.9 P_{n}\]</p>
+        </div>
         <script>
           document
             .getElementById("show-axial")
@@ -314,7 +366,7 @@
             class="L"
             type="text"
             name="Lcxrx"
-            value="{{'%.1f'%(Lcxrx)}}"
+            value="{{'%.2f'%(Lcxrx)}}"
             readonly
           />
 
@@ -325,7 +377,7 @@
             class="L"
             type="text"
             name="Lcyry"
-            value="{{'%.1f'%(Lcyry)}}"
+            value="{{'%.2f'%(Lcyry)}}"
             readonly
           />
 
@@ -334,7 +386,7 @@
             class="L"
             type="text"
             name="lcr"
-            value="{{'%.1f'%(Lcr)}}"
+            value="{{'%.2f'%(Lcr)}}"
             readonly
           />
 
@@ -354,25 +406,25 @@
             class="F"
             type="text"
             name="Fe"
-            value="{{'%.1f'%(Fe)}}"
+            value="{{'%.2f'%(Fe)}}"
             readonly
           />
           <label class="unit">ksi</label> <br />
-          <label class="F-label" for="Fcr1">F<sub>cr</sub> : </label>
+          <label class="F-label" for="Fcr1">E3-2 F<sub>cr</sub> : </label>
           <input
             class="F"
             type="text"
             name="Fcr1"
-            value="{{'%.1f'%(Fcr1)}}"
+            value="{{'%.2f'%(Fcr1)}}"
             readonly
           />
           <label class="unit">ksi</label> <br />
-          <label class="F-label" for="Fcr2">F<sub>cr</sub> : </label>
+          <label class="F-label" for="Fcr2">E3-3 F<sub>cr</sub> : </label>
           <input
             class="F"
             type="text"
             name="Fcr2"
-            value="{{'%.1f'%(Fcr2)}}"
+            value="{{'%.2f'%(Fcr2)}}"
             readonly
           />
           <label class="unit">ksi</label>
@@ -395,7 +447,7 @@
             class="buckling"
             type="text"
             name="Fcr"
-            value="{{'%.1f'%(Fcr3)}}"
+            value="{{'%.2f'%(Fcr3)}}"
             readonly
           />
           <label class="unit">ksi</label> <br />
@@ -404,7 +456,7 @@
             class="buckling"
             type="text"
             name="Pn"
-            value="{{'%.1f'%(Pn)}}"
+            value="{{'%.2f'%(Pn)}}"
             readonly
           />
           <label class="unit">kips</label> <br />
@@ -415,7 +467,7 @@
             class="buckling"
             type="text"
             name="phiPn"
-            value="{{'%.1f'%(phiPn)}}"
+            value="{{'%.2f'%(phiPn)}}"
             readonly
           />
           <label class="unit">kips</label>
